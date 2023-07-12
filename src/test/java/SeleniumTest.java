@@ -11,37 +11,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeleniumTest {
 
-    private WebDriver driver;
+    private WebDriver webDriver;
 
     @Before
     public void setUp() {
         // Set up ChromeDriver path
-        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");//linux_64
+
+        // Get file
+        File file = new File("AppendingElements.html");
+        String path = "file://" + file.getAbsolutePath();
 
         // Create a new ChromeDriver instance
-        driver = new ChromeDriver();
-        File file = new File("AppendingElements.html");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        webDriver = new ChromeDriver(options);
+
         // Open the HTML file
-        driver.get(file.getAbsolutePath());
+        webDriver.get(path);
     }
 
     @Test
     public void addOneItemTest() {
         // find input element:
-        WebElement input = driver.findElement(By.id("input"));
+        WebElement input = webDriver.findElement(By.id("input"));
 
         // type in input box:
         input.sendKeys("apples");
 
         // find submit button and submit:
-        WebElement button = driver.findElement(By.id("button"));
+        WebElement button = webDriver.findElement(By.id("button"));
         button.click();
 
         // find list of items and ensure item is there:
-        List<WebElement> list = driver.findElements(By.cssSelector("#list li"));
+        List<WebElement> list = webDriver.findElements(By.cssSelector("#list li"));
 
         Assert.assertEquals(1, list.size());
 
@@ -51,13 +58,13 @@ public class SeleniumTest {
     @Test
     public void addThreeItemsTest() {
         // find input element:
-        WebElement input = driver.findElement(By.id("input"));
+        WebElement input = webDriver.findElement(By.id("input"));
 
         // type in input box:
         input.sendKeys("apples");
 
         // find submit button and submit:
-        WebElement button = driver.findElement(By.id("button"));
+        WebElement button = webDriver.findElement(By.id("button"));
         button.click();
 
         // send more items:
@@ -69,7 +76,7 @@ public class SeleniumTest {
         button.click();
 
         // find list of items and ensure items are there:
-        List<WebElement> list = driver.findElements(By.cssSelector("#list li"));
+        List<WebElement> list = webDriver.findElements(By.cssSelector("#list li"));
 
         Assert.assertEquals(3, list.size());
 
@@ -81,10 +88,10 @@ public class SeleniumTest {
     @Test
     public void emptyListTest() {
         // find input element:
-        WebElement input = driver.findElement(By.id("input"));
+        WebElement input = webDriver.findElement(By.id("input"));
 
         // find list of items and ensure no items:
-        List<WebElement> list = driver.findElements(By.cssSelector("#list li"));
+        List<WebElement> list = webDriver.findElements(By.cssSelector("#list li"));
 
         Assert.assertEquals(0, list.size());
 
@@ -94,6 +101,6 @@ public class SeleniumTest {
     @After
     public void tearDown() {
         // Close the browser
-        driver.quit();
+        webDriver.quit();
     }
 }

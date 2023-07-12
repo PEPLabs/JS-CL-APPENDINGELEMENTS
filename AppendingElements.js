@@ -24,8 +24,11 @@ button.onclick = addItem;
  * 
  * Your task will be to do the same, but with the requirements specified in the TODO statement.
  */
-function addItem(){
+function addItem() {
     // code here
+    let newElement = document.createElement("li");
+    newElement.innerText = input.value;
+    list.append(newElement);
 }
 
 /* OPTIONAL PRACTICE: If you want more practice later, try dynamically removing list elements as well. */

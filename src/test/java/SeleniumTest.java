@@ -278,7 +278,7 @@ public class SeleniumTest {
             }
         }
         
-        throw new RuntimeException("Could not find Attributes.html in any expected location: " + 
+        throw new RuntimeException("Could not find AppendingElements.html in any expected location: " + 
             Arrays.toString(possibleHtmlPaths));
     }
     

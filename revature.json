@@ -1,0 +1,25 @@
+{
+  "type": "java",
+  "testFiles": [
+    {
+      "path": "src/test/java/SeleniumTest.java",
+      "testCases": [
+        {
+          "methodName": "addOneItemTest",
+          "label": "Add a single item to the list",
+          "description": "Verifies that adding one item through the input box updates the list correctly."
+        },
+        {
+          "methodName": "addThreeItemsTest",
+          "label": "Add multiple items to the list",
+          "description": "Verifies that adding three items sequentially through the input box displays all items in the correct order."
+        },
+        {
+          "methodName": "emptyListTest",
+          "label": "Check empty list",
+          "description": "Verifies that the list is initially empty when no items are added."
+        }
+      ]
+    }
+  ]
+}
